@@ -16,7 +16,7 @@ export function InputPesquisa({
     setSmartphones
 }: InputPesquisaProps) {
 
-    const { register, handleSubmit, reset } = useForm<Inputs>()
+    const { register, handleSubmit } = useForm<Inputs>()
 
     function enviaPesquisa(data: Inputs) {
 
@@ -43,27 +43,6 @@ export function InputPesquisa({
         setSmartphones(resultado)
     }
 
-    function mostraDestaques() {
-
-        const destaques = todosSmartphones.filter(
-            (smartphone) => smartphone.destaque
-        )
-
-        setSmartphones(destaques)
-
-        reset({
-            termo: ""
-        })
-    }
-
-    function mostraTodos() {
-
-        setSmartphones(todosSmartphones)
-
-        reset({
-            termo: ""
-        })
-    }
 
     return (
         <div className="max-w-4xl mx-auto">
