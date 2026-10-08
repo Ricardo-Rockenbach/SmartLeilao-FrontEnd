@@ -6,42 +6,49 @@ import Layout from './Layout.tsx'
 import App from './App.tsx'
 import Login from './Login.tsx'
 import Detalhes from './Detalhes.tsx'
-import MinhasPropostas from './MinhasPropostas.tsx'
+import MeusLances from './MeusLances.tsx'
 import CadCliente from './CadCliente.tsx'
 
 // ----------------- Rotas de Admin
-import AdminLayout from './admin/AdminLayout.tsx';
-import AdminLogin from './admin/AdminLogin.tsx';            
-import AdminDashboard from './admin/AdminDashboard.tsx';    
-import AdminCarros from './admin/AdminCarros.tsx';          
-import AdminNovoCarro from './admin/AdminNovoCarro.tsx';          
-import AdminPropostas from './admin/AdminPropostas.tsx';       
+import AdminLayout from './admin/AdminLayout.tsx'
+import AdminLogin from './admin/AdminLogin.tsx'
+import AdminDashboard from './admin/AdminDashboard.tsx'
+import AdminSmartphones from './admin/AdminSmartphones.tsx'
+import AdminNovoSmartphone from './admin/AdminNovoSmartphone.tsx'
+import AdminLances from './admin/AdminLances.tsx'
+import AdminNovoLeilao from './admin/AdminNovoLeilao.tsx'
+import AdminClientes from './admin/AdminClientes.tsx'
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import {
+  createBrowserRouter,
+  RouterProvider
+} from 'react-router-dom'
 
 const rotas = createBrowserRouter([
   {
     path: "/admin/login",
-    element: <AdminLogin />,   // rota do form de login sem o Layout da Área Administrativa
+    element: <AdminLogin />,
   },
   {
     path: "/admin",
-    element: <AdminLayout />,  // layout principal do admin com menus e outlet
+    element: <AdminLayout />,
     children: [
-      { index: true, element: <AdminDashboard /> },     // rota /admin
-      { path: "carros", element: <AdminCarros /> },     // rota /admin/carros
-      { path: "carros/novo", element: <AdminNovoCarro /> },  // ...
-      { path: "propostas", element: <AdminPropostas /> },  // ...      
+      { index: true, element: <AdminDashboard /> },
+      { path: "smartphones", element: <AdminSmartphones /> },
+      { path: "smartphones/novo", element: <AdminNovoSmartphone /> },
+      { path: "lances", element: <AdminLances /> },
+      { path: "leiloes/novo/:smartphoneId", element: <AdminNovoLeilao />},
+      { path: "clientes", element: <AdminClientes /> },
     ],
   },
   {
     path: '/',
-    element: <Layout />,         // Layout das páginas do cliente
+    element: <Layout />,
     children: [
       { index: true, element: <App /> },
       { path: 'login', element: <Login /> },
-      { path: 'detalhes/:carroId', element: <Detalhes /> },
-      { path: 'minhasPropostas', element: <MinhasPropostas /> },
+      { path: 'detalhes/:smartphoneId', element: <Detalhes /> },
+      { path: 'meusLances', element: <MeusLances /> },
       { path: 'cadCliente', element: <CadCliente /> },
     ],
   },
